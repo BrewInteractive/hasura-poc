@@ -1,0 +1,43 @@
+name: pipeline for hasura
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install NPM packages
+        run: npm install
+
+      - name: Start metadata
+        run: npx hasura metadata apply --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces
+
+      - name: Metadata diff
+        run: npx hasura metadata diff --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces
+
+      - name: Metadata OK
+        run: echo "Metadata OK"
+
+      - name: Start migration for oauth
+        run: npx hasura migrate apply --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces --database-name space_db
+
+      - name: Migration status for oauth
+        run: npx hasura migrate status --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces --database-name space_db
+
+      - name: Migration OK 
+        run: echo "Migration OK "
+
+      - name: Migration status done
+        run: echo "Migration status done"
