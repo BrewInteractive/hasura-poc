@@ -5,7 +5,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "hasura-cli": "^2.35.3",
+    "hasura-cli": "2.36.1",
     "standard-version": "^9.5.0"
   }
 }
