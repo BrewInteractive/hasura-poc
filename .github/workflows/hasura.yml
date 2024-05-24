@@ -22,22 +22,22 @@ jobs:
         working-directory: ./apps/hasura
 
       - name: Start metadata
-        run: hasura metadata apply --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces
+        run: hasura-cli metadata apply --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces
         working-directory: ./apps/hasura
 
       - name: Metadata diff
-        run: hasura metadata diff --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces
+        run: hasura-cli metadata diff --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces
         working-directory: ./apps/hasura
 
       - name: Metadata OK
         run: echo "Metadata OK"
 
       - name: Start migration for oauth
-        run: hasura migrate apply --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces --database-name space_db
+        run: hasura-cli migrate apply --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces --database-name space_db
         working-directory: ./apps/hasura
 
       - name: Migration status for oauth
-        run: hasura migrate status --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces --database-name space_db
+        run: hasura-cli migrate status --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces --database-name space_db
         working-directory: ./apps/hasura
 
       - name: Migration OK 
