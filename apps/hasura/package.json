@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "author": "",
+  "scripts": {
+    "start": "hasura console --project spaces --admin-secret secret --api-host http://localhost --api-port 9693 --console-port 9698"    
+  },
   "license": "ISC",
   "devDependencies": {
+    "hasura-cli": "2.36.1",
     "standard-version": "^9.5.0"
   }
 }
