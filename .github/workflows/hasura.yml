@@ -32,11 +32,11 @@ jobs:
       - name: Metadata OK
         run: echo "Metadata OK"
 
-      - name: Start migration for oauth
+      - name: Start migration
         run: hasura migrate apply --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces --database-name space_db
         working-directory: ./apps/hasura
 
-      - name: Migration status for oauth
+      - name: Migration status
         run: hasura migrate status --endpoint ${{ secrets.HASURA_ENDPOINT }} --admin-secret "${{ secrets.HASURA_SECRET }}" --project spaces --database-name space_db
         working-directory: ./apps/hasura
 
