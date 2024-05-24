@@ -1,0 +1,44 @@
+version: "3.3"
+services:
+  postgres-db-metadata:
+    image: postgres:15
+    restart: always
+    ports:
+      - "46469:5432"
+    volumes:
+      - ./apps/hasura/data/postgres-db-metadata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+  postgres-db-business:
+    image: postgres:15
+    restart: always
+    ports:
+      - "46471:5432"
+    volumes:
+      - ./apps/hasura/data/postgres-db-business:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgrespassword
+  hasura:
+    image: hasura/graphql-engine:v2.36.1.cli-migrations-v3
+    ports:
+      - "53358:53358"
+      - "45554:45554"
+    depends_on:
+      - "postgres-db-metadata"
+      - "postgres-db-business"
+    restart: always
+    working_dir: /app
+    volumes:
+      - ./apps/hasura/spaces:/app
+      - ./apps/hasura/spaces/migrations:/hasura-migrations
+      - ./apps/hasura/spaces/metadata:/hasura-metadata
+    env_file: ./apps/hasura/.env
+  web:
+    build: 
+      context: ./
+      dockerfile: Dockerfile.web
+    depends_on:
+      - "hasura"
+    env_file: ./apps/web/.env
+volumes:
+  pgadmin_data:

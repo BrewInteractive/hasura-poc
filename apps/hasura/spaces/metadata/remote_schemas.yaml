@@ -1,0 +1,17 @@
+- name: sample_remote_schema
+  definition:
+    url: https://graphqlzero.almansi.me/api
+    timeout_seconds: 60
+    customization:
+      field_names:
+        - mapping: {}
+          parent_type: remote_schema
+          prefix: remote_schema_
+        - mapping: {}
+          parent_type: remote_schema
+          prefix: remote_schema_
+      root_fields_namespace: remote_schema
+      type_names:
+        mapping: {}
+        prefix: remote_schema_
+  comment: ""

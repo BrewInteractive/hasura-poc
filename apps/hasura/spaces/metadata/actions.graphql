@@ -1,0 +1,113 @@
+type Query {
+  login(
+    object: UserActionInput!
+  ): UserActionOutput
+}
+
+type Query {
+  profile: ProfileOutput
+}
+
+type Query {
+  schedule(
+    object: ScheduleInput!
+  ): ScheduleOutput
+}
+
+input UserActionInput {
+  username: String!
+  password: String!
+  keepMeLoggedIn: Boolean
+}
+
+input ScheduleInput {
+  pageNo: Int
+  pageSize: Int
+}
+
+type LoggedInUser {
+  fullName: String
+  sessionId: String
+  nameInMeeting: String
+  createdOn: Float
+  authToken: String
+  userId: String
+  role: Int
+  refreshToken: String
+  email: String
+  curDomainRoId: String
+  domainUserStatus: Int
+  hasPassword: Boolean
+  social: String
+  isFtue: Boolean
+  campaignId: String
+}
+
+type UserActionOutput {
+  error: Error
+  loggedInUser: LoggedInUser
+}
+
+type ProfileOutput {
+  profile: Profile
+  error: Error
+}
+
+type Error {
+  code: String
+  desc: String
+  exception: String
+}
+
+type Profile {
+  name: String
+  accountId: String
+  mail: String
+  firstName: String
+  lastName: String
+  language: String
+  phone: String
+  company: String
+  position: String
+}
+
+type MeetingRoom {
+  categories: String
+  comingSoon: Boolean
+  description: String
+  roomName: String
+}
+
+type Meeting {
+  about: String
+  chatRoId: String
+  createdOn: Int
+  endTime: Int
+  icsVersion: Int
+  invitesByEmail: [String]
+  isLocked: Boolean
+  isMyRoom: Boolean
+  isPrivate: Boolean
+  isRecurring: Boolean
+  meetingId: String
+  meetingInfo: String
+  meetingName: String
+  meetingRoom: MeetingRoom
+  meetingState: String
+  meetingUsers: [String]
+  organizerRoId: String
+  priority: String
+  redirectURL: String
+  roid: String
+  startTime: Int
+}
+
+type ScheduleOutput {
+  error: Error
+  meetings: [Meeting]
+  msgType: Int
+  reqId: String
+  totalCount: Int
+  vox: String
+}
+

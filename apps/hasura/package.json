@@ -1,0 +1,10 @@
+{
+  "name": "spaces",
+  "version": "1.0.0",
+  "description": "",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "standard-version": "^9.5.0"
+  }
+}

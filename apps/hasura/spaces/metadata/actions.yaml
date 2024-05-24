@@ -1,0 +1,72 @@
+actions:
+  - name: login
+    definition:
+      kind: ""
+      handler: '{{API_BASE_URL}}user'
+      forward_client_headers: true
+      request_transform:
+        body:
+          action: transform
+          template: |-
+            {
+                "username": {{$body.input.object.username}},
+                "password": {{$body.input.object.password}},
+                "keepMeLoggedIn": {{$body.input.object.keepMeLoggedIn}},
+                "cmd": "login"
+            }
+        template_engine: Kriti
+        version: 2
+    permissions:
+      - role: anonymous
+    comment: Login action.
+  - name: profile
+    definition:
+      kind: ""
+      handler: '{{API_BASE_URL}}profile'
+      forward_client_headers: true
+      request_transform:
+        body:
+          action: transform
+          template: |-
+            {
+                "cmd": "getUserProfile"
+            }
+        template_engine: Kriti
+        version: 2
+    permissions:
+      - role: tmrw_backroom
+      - role: user
+    comment: profile
+  - name: schedule
+    definition:
+      kind: ""
+      handler: '{{API_BASE_URL}}schedule'
+      forward_client_headers: true
+      request_transform:
+        body:
+          action: transform
+          template: |-
+            {
+                "cmd": "getMeetingsWithinDateRangeV2",
+                "pageNo": {{$body.input.object.pageNo}},
+                "pageSize": {{$body.input.object.pageSize}}
+            }
+        template_engine: Kriti
+        version: 2
+    permissions:
+      - role: tmrw_backroom
+custom_types:
+  enums: []
+  input_objects:
+    - name: UserActionInput
+    - name: ScheduleInput
+  objects:
+    - name: LoggedInUser
+    - name: UserActionOutput
+    - name: ProfileOutput
+    - name: Error
+    - name: Profile
+    - name: MeetingRoom
+    - name: Meeting
+    - name: ScheduleOutput
+  scalars: []

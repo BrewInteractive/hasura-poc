@@ -1,0 +1,21 @@
+table:
+  name: user
+  schema: public
+insert_permissions:
+  - role: tmrw_backroom
+    permission:
+      check: {}
+      columns:
+        - id
+        - name
+        - surname
+    comment: ""
+select_permissions:
+  - role: tmrw_backroom
+    permission:
+      columns:
+        - id
+        - name
+        - surname
+      filter: {}
+    comment: ""

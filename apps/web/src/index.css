@@ -1,0 +1,101 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+input {
+  display: block;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 15px;
+  margin: 16px;
+  padding: 0.7rem;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 0.7rem;
+  border-radius: 0.5rem;
+  font-size: 15px;
+  min-width: 100px;
+  color: rgb(255 255 255);
+  background-color: rgb(26 26 39);
+}
+
+ul {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  list-style-type: none;
+  border-radius: 5px;
+}
+
+li.list-item {
+  line-height: 1.4;
+  list-style-type: none;
+  padding: 4px 16px;
+  margin: 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+li.room {
+  cursor: pointer;
+}
+
+li.message {
+  padding: 8px;
+  margin: 2px;
+  width: max-content;
+  border: none;
+  border-radius: 16px;
+  background-color: #f0f0f0;
+}
+
+span {
+  font-weight: bold;
+}
+
+li.align-right {
+  align-self: flex-end;
+}
+
+li.align-right {
+  text-align: end;
+}
+
+.panel {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-content: center;
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-content: center;
+  padding: 8px;
+  margin: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
