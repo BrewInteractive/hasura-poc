@@ -19,6 +19,132 @@ actions:
     permissions:
       - role: anonymous
     comment: Login action.
+  - name: postLandingCmdGetCountryLookups
+    definition:
+      kind: synchronous
+      handler: http://localhost:8183
+      forward_client_headers: true
+      request_transform:
+        body:
+          action: transform
+          template: '{{$body.input.getCountryLookupsReqInput}}'
+        method: POST
+        query_params: {}
+        template_engine: Kriti
+        url: '{{$base_url}}/landing/cmd/getCountryLookups'
+        version: 2
+  - name: postLandingCmdGetLookups
+    definition:
+      kind: synchronous
+      handler: http://localhost:8183
+      forward_client_headers: true
+      request_transform:
+        body:
+          action: transform
+          template: '{{$body.input.getLookupsReqInput}}'
+        method: POST
+        query_params: {}
+        template_engine: Kriti
+        url: '{{$base_url}}/landing/cmd/getLookups'
+        version: 2
+  - name: postLandingCmdGetToken
+    definition:
+      kind: synchronous
+      handler: http://localhost:8183
+      forward_client_headers: true
+      request_transform:
+        body:
+          action: transform
+          template: '{{$body.input.getTokenReqInput}}'
+        method: POST
+        query_params: {}
+        template_engine: Kriti
+        url: '{{$base_url}}/landing/cmd/getToken'
+        version: 2
+  - name: postLandingCmdRedirect
+    definition:
+      kind: synchronous
+      handler: http://localhost:8183
+      forward_client_headers: true
+      request_transform:
+        body:
+          action: transform
+          template: '{{$body.input.redirectReqInput}}'
+        method: POST
+        query_params: {}
+        template_engine: Kriti
+        url: '{{$base_url}}/landing/cmd/redirect'
+        version: 2
+  - name: postLandingCmdResendEmailConfirmationLink
+    definition:
+      kind: synchronous
+      handler: http://localhost:8183
+      forward_client_headers: true
+      request_transform:
+        body:
+          action: transform
+          template: '{{$body.input.resendEmailConfirmationLinkReqInput}}'
+        method: POST
+        query_params: {}
+        template_engine: Kriti
+        url: '{{$base_url}}/landing/cmd/resendEmailConfirmationLink'
+        version: 2
+  - name: postLandingCmdUserAppToken
+    definition:
+      kind: synchronous
+      handler: http://localhost:8183
+      forward_client_headers: true
+      request_transform:
+        body:
+          action: transform
+          template: '{{$body.input.userAppTokenReqInput}}'
+        method: POST
+        query_params: {}
+        template_engine: Kriti
+        url: '{{$base_url}}/landing/cmd/userAppToken'
+        version: 2
+  - name: postLandingCmdVersion
+    definition:
+      kind: synchronous
+      handler: http://localhost:8183
+      forward_client_headers: true
+      request_transform:
+        body:
+          action: transform
+          template: '{{$body.input.versionReqInput}}'
+        method: POST
+        query_params: {}
+        template_engine: Kriti
+        url: '{{$base_url}}/landing/cmd/version'
+        version: 2
+  - name: postSessionCmdGetCurrentUser
+    definition:
+      kind: synchronous
+      handler: http://localhost:8183
+      forward_client_headers: true
+      request_transform:
+        body:
+          action: transform
+          template: '{{$body.input.getCurrentUserReqInput}}'
+        method: POST
+        query_params: {}
+        template_engine: Kriti
+        url: '{{$base_url}}/session/cmd/getCurrentUser'
+        version: 2
+  - name: postSessionCmdGetOrCreateTempUser
+    definition:
+      kind: synchronous
+      handler: http://localhost:8183
+      forward_client_headers: true
+      request_transform:
+        body:
+          action: transform
+          template: '{{$body.input.createTempUserReqInput}}'
+        method: POST
+        query_params: {}
+        template_engine: Kriti
+        url: '{{$base_url}}/session/cmd/getOrCreateTempUser'
+        version: 2
   - name: profile
     definition:
       kind: ""
@@ -60,6 +186,15 @@ custom_types:
   input_objects:
     - name: UserActionInput
     - name: ScheduleInput
+    - name: UserAppTokenReqInput
+    - name: GetCurrentUserReqInput
+    - name: RedirectReqInput
+    - name: CreateTempUserReqInput
+    - name: GetCountryLookupsReqInput
+    - name: VersionReqInput
+    - name: GetLookupsReqInput
+    - name: ResendEmailConfirmationLinkReqInput
+    - name: GetTokenReqInput
   objects:
     - name: LoggedInUser
     - name: UserActionOutput
@@ -69,4 +204,41 @@ custom_types:
     - name: MeetingRoom
     - name: Meeting
     - name: ScheduleOutput
-  scalars: []
+    - name: BaseError
+    - name: UserAppTokenResp
+    - name: CurrentSubPlan
+    - name: Facebook
+    - name: FeaturePlan
+    - name: GatewayPrice
+    - name: GetCurrentUserResp
+    - name: Google
+    - name: MeetingConfig
+    - name: PaymentPlan
+    - name: RoomInPlan
+    - name: RoomOfWeek2
+    - name: Social
+    - name: SpawnPoint
+    - name: SubscriptionPlan
+    - name: RedirectResp
+    - name: CreateTempUserResp
+    - name: CountryCode
+    - name: GetCountryLookupsResp
+    - name: VersionResp
+    - name: FeedbackCat2
+    - name: GetLookupsResp
+    - name: Language2
+    - name: Lookups
+    - name: MeetingPriority
+    - name: MsgLikeType2
+    - name: ProblemReportingTheme2
+    - name: RoomUserRole2
+    - name: RoomUserType2
+    - name: SuggestionStatus2
+    - name: Synchronisation2
+    - name: UserRoleInMeeting2
+    - name: WebPushTopic
+    - name: ResendEmailConfirmationLinkResp
+    - name: GetTokenResp
+  scalars:
+    - name: BigInt
+    - name: JSON

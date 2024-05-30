@@ -4,6 +4,60 @@ type Query {
   ): UserActionOutput
 }
 
+type Mutation {
+  postLandingCmdGetCountryLookups(
+    getCountryLookupsReqInput: GetCountryLookupsReqInput
+  ): GetCountryLookupsResp
+}
+
+type Mutation {
+  postLandingCmdGetLookups(
+    getLookupsReqInput: GetLookupsReqInput
+  ): GetLookupsResp
+}
+
+type Mutation {
+  postLandingCmdGetToken(
+    getTokenReqInput: GetTokenReqInput
+  ): GetTokenResp
+}
+
+type Mutation {
+  postLandingCmdRedirect(
+    redirectReqInput: RedirectReqInput
+  ): RedirectResp
+}
+
+type Mutation {
+  postLandingCmdResendEmailConfirmationLink(
+    resendEmailConfirmationLinkReqInput: ResendEmailConfirmationLinkReqInput
+  ): ResendEmailConfirmationLinkResp
+}
+
+type Mutation {
+  postLandingCmdUserAppToken(
+    userAppTokenReqInput: UserAppTokenReqInput
+  ): UserAppTokenResp
+}
+
+type Mutation {
+  postLandingCmdVersion(
+    versionReqInput: VersionReqInput
+  ): VersionResp
+}
+
+type Mutation {
+  postSessionCmdGetCurrentUser(
+    getCurrentUserReqInput: GetCurrentUserReqInput
+  ): GetCurrentUserResp
+}
+
+type Mutation {
+  postSessionCmdGetOrCreateTempUser(
+    createTempUserReqInput: CreateTempUserReqInput
+  ): CreateTempUserResp
+}
+
 type Query {
   profile: ProfileOutput
 }
@@ -25,22 +79,88 @@ input ScheduleInput {
   pageSize: Int
 }
 
-type LoggedInUser {
-  fullName: String
-  sessionId: String
-  nameInMeeting: String
-  createdOn: Float
-  authToken: String
-  userId: String
-  role: Int
-  refreshToken: String
+input UserAppTokenReqInput {
+  cmd: String
+  msgType: Int
+  reqId: String
+}
+
+input GetCurrentUserReqInput {
+  cmd: String
+  msgType: Int
+  reqId: String
+}
+
+input RedirectReqInput {
+  cmd: String
+  msgType: Int
+  reqId: String
+  target: String
+}
+
+input CreateTempUserReqInput {
+  cmd: String
+  demoUserName: String
+  msgType: Int
+  reqId: String
+}
+
+input GetCountryLookupsReqInput {
+  cmd: String
+  msgType: Int
+  reqId: String
+}
+
+input VersionReqInput {
+  cmd: String
+  msgType: Int
+  reqId: String
+}
+
+input GetLookupsReqInput {
+  cmd: String
+  msgType: Int
+  reqId: String
+}
+
+input ResendEmailConfirmationLinkReqInput {
+  cmd: String
   email: String
-  curDomainRoId: String
-  domainUserStatus: Int
-  hasPassword: Boolean
-  social: String
-  isFtue: Boolean
+  msgType: Int
+  reqId: String
+}
+
+input GetTokenReqInput {
+  cmd: String
+  msgType: Int
+  reqId: String
+}
+
+type LoggedInUser {
+  authToken: String
+  avUrl: String
   campaignId: String
+  createdOn: BigInt
+  curDomainRoId: String
+  currentSubPlan: CurrentSubPlan
+  domainUserStatus: Int
+  email: String
+  emailConfirmedTs: BigInt
+  fullName: String
+  hasPassword: Boolean
+  isEmailConfirmed: Boolean
+  isFtue: Boolean
+  nameInMeeting: String
+  paymentPending: Boolean
+  paymentPendingOn: BigInt
+  paymentStarted: Boolean
+  paymentStartedOn: BigInt
+  refreshToken: String
+  role: Int
+  sessionId: String
+  social: Social
+  spt: SpawnPoint
+  userId: String
 }
 
 type UserActionOutput {
@@ -110,4 +230,305 @@ type ScheduleOutput {
   totalCount: Int
   vox: String
 }
+
+type BaseError {
+  code: Int
+  desc: String
+  exception: String
+}
+
+type UserAppTokenResp {
+  error: BaseError
+  msgType: Int
+  reqId: String
+  userAppToken: String
+}
+
+type CurrentSubPlan {
+  campaignAvailedStatus: Int
+  campaignRoId: String
+  changedOn: BigInt
+  changedType: Int
+  gatewaySubscriptionId: Int
+  gatewaySubscriptionStatus: Int
+  isPayingUser: Int
+  isTrialUsed: Boolean
+  nextBillDate: BigInt
+  roid: String
+  roomSubscriptionStatus: Int
+  startDate: BigInt
+  subscriptionPlan: SubscriptionPlan
+  subscriptionPlanRoId: String
+}
+
+type Facebook {
+  fbEmail: String
+  fbName: String
+  fbToken: String
+  fbUserId: String
+}
+
+type FeaturePlan {
+  availableFeatures: JSON
+  availableRooms: [RoomInPlan]
+  category: Int
+  createdBy: String
+  createdOn: BigInt
+  description: String
+  featurePlanKind: Int
+  isActive: Boolean
+  isPlanDisabled: Boolean
+  mainCurrencyCode: String
+  meetingConfig: MeetingConfig
+  name: String
+  paddlePlanId: Int
+  planLength: Int
+  planTrialDays: Int
+  planType: String
+  recurringPriceEur: Float
+  recurringPriceGbp: Float
+  recurringPriceUsd: Float
+  roid: String
+  roomOfWeek: [RoomOfWeek2]
+  toastMessage: String
+  updatedBy: String
+  updatedOn: BigInt
+}
+
+type GatewayPrice {
+  eur: String
+  gbp: String
+  usd: String
+}
+
+type GetCurrentUserResp {
+  error: BaseError
+  loggedInUser: LoggedInUser
+  msgType: Int
+  reqId: String
+}
+
+type Google {
+  accessToken: String
+  domainName: String
+  email: String
+  expiresIn: Int
+  familyName: String
+  givenName: String
+  googleUserId: String
+  link: String
+  locale: String
+  name: String
+  picture: String
+  refreshToken: String
+  scope: String
+  tokenType: String
+  validFromTimestamp: BigInt
+  verifiedEmail: String
+}
+
+type MeetingConfig {
+  assignedSeating: Boolean
+  attendeeCanEnterAfterMeetingEndMins: Int
+  attendeeCanEnterBeforeMeetingStartMins: Int
+  guestsDisallowed: Boolean
+  hidePageDecorations: Boolean
+  hostCanEnterAfterMeetingEndMins: Int
+  hostCanEnterBeforeMeetingStartMins: Int
+  shouldPromote: Boolean
+  shouldWaitForHost: Boolean
+  waitUntilHostAdmits: Boolean
+}
+
+type PaymentPlan {
+  billingPeriod: Int
+  billingType: String
+  createdBy: String
+  createdOn: BigInt
+  gatewayPlanId: Int
+  initialPrice: GatewayPrice
+  name: String
+  recurringPrice: GatewayPrice
+  roid: String
+  trialDays: Int
+  updatedBy: String
+  updatedOn: BigInt
+}
+
+type RoomInPlan {
+  isFeatured: Boolean
+  isLocked: Boolean
+  roomRoId: String
+}
+
+type RoomOfWeek2 {
+  endDate: BigInt
+  roomRoId: String
+  startDate: BigInt
+}
+
+type Social {
+  facebook: Facebook
+  google: Google
+}
+
+type SpawnPoint {
+  position: Int
+}
+
+type SubscriptionPlan {
+  createdBy: String
+  createdOn: BigInt
+  description: String
+  featurePlan: FeaturePlan
+  featurePlanKind: Int
+  featurePlanRoId: String
+  isActive: Boolean
+  isDefault: Boolean
+  isFounder: Boolean
+  name: String
+  paymentPlan: PaymentPlan
+  paymentPlanRoId: String
+  roid: String
+  updatedBy: String
+  updatedOn: BigInt
+}
+
+type RedirectResp {
+  error: BaseError
+  msgType: Int
+  reqId: String
+  url: String
+}
+
+type CreateTempUserResp {
+  adHocEventId: String
+  authToken: String
+  error: BaseError
+  isTemp: Boolean
+  msgType: Int
+  reqId: String
+  userRoId: String
+  userSessionId: String
+}
+
+type CountryCode {
+  cmd: String
+  flag: String
+  msgType: Int
+  name: String
+  number: String
+  reqId: String
+}
+
+type GetCountryLookupsResp {
+  countryCodes: [CountryCode]
+  error: BaseError
+  msgType: Int
+  reqId: String
+}
+
+type VersionResp {
+  dbName: String
+  dbVersion: Int
+  error: BaseError
+  msgType: Int
+  reqId: String
+}
+
+type FeedbackCat2 {
+  label: String
+  value: Int
+}
+
+type GetLookupsResp {
+  error: BaseError
+  lookups: Lookups
+  msgType: Int
+  reqId: String
+}
+
+type Language2 {
+  label: String
+  value: Int
+}
+
+type Lookups {
+  defaultUserRoleInMeeting: UserRoleInMeeting2
+  domains: [String]
+  feedbackCat: [FeedbackCat2]
+  language: [Language2]
+  meetingPri: [MeetingPriority]
+  msgLikeType: [MsgLikeType2]
+  problemReportingTheme: [ProblemReportingTheme2]
+  roomUserRole: [RoomUserRole2]
+  roomUserType: [RoomUserType2]
+  suggestionStatus: [SuggestionStatus2]
+  synchronisation: [Synchronisation2]
+  userRoleInMeeting: [UserRoleInMeeting2]
+  webPushTopics: [WebPushTopic]
+}
+
+type MeetingPriority {
+  color: String
+  label: String
+  value: Int
+}
+
+type MsgLikeType2 {
+  label: String
+  value: String
+}
+
+type ProblemReportingTheme2 {
+  label: String
+  value: Int
+}
+
+type RoomUserRole2 {
+  label: String
+  value: Int
+}
+
+type RoomUserType2 {
+  label: String
+  value: Int
+}
+
+type SuggestionStatus2 {
+  label: String
+  value: Int
+}
+
+type Synchronisation2 {
+  label: String
+  value: Int
+}
+
+type UserRoleInMeeting2 {
+  label: String
+  value: Int
+}
+
+type WebPushTopic {
+  label: String
+  value: Int
+}
+
+type ResendEmailConfirmationLinkResp {
+  error: BaseError
+  msgType: Int
+  reqId: String
+}
+
+type GetTokenResp {
+  error: BaseError
+  msgType: Int
+  reqId: String
+  token: String
+}
+
+scalar BigInt
+
+scalar JSON
 
