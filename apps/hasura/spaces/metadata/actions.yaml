@@ -2,7 +2,7 @@ actions:
   - name: login
     definition:
       kind: ""
-      handler: '{{API_BASE_URL}}user'
+      handler: '{{API_BASE_URL}}/user'
       forward_client_headers: true
       request_transform:
         body:
@@ -22,7 +22,7 @@ actions:
   - name: postLandingCmdGetCountryLookups
     definition:
       kind: synchronous
-      handler: http://localhost:8183
+      handler: '{{API_BASE_URL}}'
       forward_client_headers: true
       request_transform:
         body:
@@ -39,7 +39,7 @@ actions:
   - name: postLandingCmdGetLookups
     definition:
       kind: synchronous
-      handler: http://localhost:8183
+      handler: '{{API_BASE_URL}}'
       forward_client_headers: true
       request_transform:
         body:
@@ -56,7 +56,7 @@ actions:
   - name: postLandingCmdGetToken
     definition:
       kind: synchronous
-      handler: http://localhost:8183
+      handler: '{{API_BASE_URL}}'
       forward_client_headers: true
       request_transform:
         body:
@@ -73,7 +73,7 @@ actions:
   - name: postLandingCmdRedirect
     definition:
       kind: synchronous
-      handler: http://localhost:8183
+      handler: '{{API_BASE_URL}}'
       forward_client_headers: true
       request_transform:
         body:
@@ -90,7 +90,7 @@ actions:
   - name: postLandingCmdResendEmailConfirmationLink
     definition:
       kind: synchronous
-      handler: http://localhost:8183
+      handler: '{{API_BASE_URL}}'
       forward_client_headers: true
       request_transform:
         body:
@@ -107,7 +107,7 @@ actions:
   - name: postLandingCmdUserAppToken
     definition:
       kind: synchronous
-      handler: http://localhost:8183
+      handler: '{{API_BASE_URL}}'
       forward_client_headers: true
       request_transform:
         body:
@@ -124,7 +124,7 @@ actions:
   - name: postLandingCmdVersion
     definition:
       kind: synchronous
-      handler: http://localhost:8183
+      handler: '{{API_BASE_URL}}'
       forward_client_headers: true
       request_transform:
         body:
@@ -141,7 +141,7 @@ actions:
   - name: postSessionCmdGetCurrentUser
     definition:
       kind: synchronous
-      handler: http://localhost:8183
+      handler: '{{API_BASE_URL}}'
       forward_client_headers: true
       request_transform:
         body:
@@ -157,7 +157,7 @@ actions:
   - name: postSessionCmdGetOrCreateTempUser
     definition:
       kind: synchronous
-      handler: http://localhost:8183
+      handler: '{{API_BASE_URL}}'
       forward_client_headers: true
       request_transform:
         body:
@@ -173,7 +173,7 @@ actions:
   - name: profile
     definition:
       kind: ""
-      handler: '{{API_BASE_URL}}profile'
+      handler: '{{API_BASE_URL}}/profile'
       forward_client_headers: true
       request_transform:
         body:
@@ -191,7 +191,7 @@ actions:
   - name: schedule
     definition:
       kind: ""
-      handler: '{{API_BASE_URL}}schedule'
+      handler: '{{API_BASE_URL}}/schedule'
       forward_client_headers: true
       request_transform:
         body:
